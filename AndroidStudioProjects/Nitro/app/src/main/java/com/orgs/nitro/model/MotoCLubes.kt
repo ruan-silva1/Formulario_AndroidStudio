@@ -1,5 +1,5 @@
 package com.orgs.nitro.model
 
-class MotoCLubes (
+data class MotoCLubes (
     val nome:String
 )
