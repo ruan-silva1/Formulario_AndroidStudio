@@ -23,6 +23,7 @@ class FormularioProdutoActivity: AppCompatActivity(R.layout.formulario_produto_a
                 Log.i("Formulario Produto", "retorno dado do motoclube: $novoMotoCLube")
                 MotoClubesDao().adiciona(novoMotoCLube)
                 Log.i("Formulario Produto","Lista de motoClube: ${MotoClubesDao().buscarTodos()}")
+                finish()
             }
         }
         )

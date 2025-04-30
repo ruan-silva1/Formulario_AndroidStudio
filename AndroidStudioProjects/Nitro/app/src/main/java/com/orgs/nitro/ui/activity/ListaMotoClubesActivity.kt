@@ -15,15 +15,17 @@ import com.orgs.nitro.ui.recyclerview.adapter.ListaMotoClubeRecycler
 class ListaMotoClubesActivity: AppCompatActivity(R.layout.lista_motoclube_activity) {
 
     val motoClubesDao = MotoClubesDao()
+    private val adapter = ListaMotoClubeRecycler(this,motoClubesDao.buscarTodos())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        configurarFab()
+        configurarRecyclerView()
     }
 
     override fun onResume() {
         super.onResume()
-        configurarFab()
-        configurarRecyclerView()
+        adapter.atualizar(motoClubesDao.buscarTodos())
     }
 
     private fun configurarFab() {
@@ -37,12 +39,8 @@ class ListaMotoClubesActivity: AppCompatActivity(R.layout.lista_motoclube_activi
 
     private fun configurarRecyclerView() {
         val listaMotoClubesRecyclerView = findViewById<RecyclerView>(R.id.lista_motoclube)
-        listaMotoClubesRecyclerView.adapter = ListaMotoClubeRecycler(
-            this,
-            motoClubesDao.buscarTodos()
-        )
-        listaMotoClubesRecyclerView.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        listaMotoClubesRecyclerView.adapter = adapter
+        listaMotoClubesRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     }
 
 }

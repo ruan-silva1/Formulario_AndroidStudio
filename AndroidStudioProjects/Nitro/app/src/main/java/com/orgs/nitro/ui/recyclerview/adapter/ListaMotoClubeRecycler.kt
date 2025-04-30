@@ -11,8 +11,10 @@ import com.orgs.nitro.model.MotoCLubes
 
 class ListaMotoClubeRecycler(
     private val context: Context,
-    private val motoclubes: List<MotoCLubes>
+    motoclubes: List<MotoCLubes>
 ) : RecyclerView.Adapter<ListaMotoClubeRecycler.ViewHolder>() {
+
+    val motoclubes = motoclubes.toMutableList()
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun vincula(motoclube: MotoCLubes) {
@@ -33,4 +35,11 @@ class ListaMotoClubeRecycler(
     }
 
     override fun getItemCount(): Int = motoclubes.size
+
+    fun atualizar(motoclubes: List<MotoCLubes>) {
+        this.motoclubes.clear()
+        this.motoclubes.addAll(motoclubes)
+        notifyDataSetChanged()
+    }
+
 }

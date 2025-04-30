@@ -15,4 +15,6 @@ class MotoClubesDao {
     fun buscarTodos(): List<MotoCLubes> {
         return listamotoclubes.toList()
     }
+
+
 }
