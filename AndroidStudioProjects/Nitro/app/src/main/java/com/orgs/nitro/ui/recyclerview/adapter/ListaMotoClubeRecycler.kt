@@ -7,39 +7,41 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.orgs.nitro.R
+import com.orgs.nitro.databinding.ListaMotoclubeActivityBinding
+import com.orgs.nitro.databinding.MotoclubesActivityBinding
 import com.orgs.nitro.model.MotoCLubes
+import kotlinx.coroutines.NonDisposableHandle.parent
 
 class ListaMotoClubeRecycler(
     private val context: Context,
     motoclubes: List<MotoCLubes>
 ) : RecyclerView.Adapter<ListaMotoClubeRecycler.ViewHolder>() {
 
-    val motoclubes = motoclubes.toMutableList()
+    private val motoclubes = motoclubes.toMutableList()
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(
+        private val binding: MotoclubesActivityBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+
         fun vincula(motoclube: MotoCLubes) {
-            val campoNomeMotoClube = itemView.findViewById<TextView>(R.id.nome_motoclube)
-            campoNomeMotoClube.text = motoclube.nome
+            binding.nomeMotoclube.text = motoclube.nome
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.motoclubes_activity, parent, false)
-        return ViewHolder(view)
+        val binding = MotoclubesActivityBinding.inflate(LayoutInflater.from(context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val motoclube = motoclubes[position]
-        holder.vincula(motoclube)
+        holder.vincula(motoclubes[position])
     }
 
     override fun getItemCount(): Int = motoclubes.size
 
-    fun atualizar(motoclubes: List<MotoCLubes>) {
-        this.motoclubes.clear()
-        this.motoclubes.addAll(motoclubes)
+    fun atualizar(novosMotoclubes: List<MotoCLubes>) {
+        motoclubes.clear()
+        motoclubes.addAll(novosMotoclubes)
         notifyDataSetChanged()
     }
-
 }
