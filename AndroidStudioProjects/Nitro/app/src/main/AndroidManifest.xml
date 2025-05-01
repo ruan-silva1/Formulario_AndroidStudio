@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.FormularioProdutoActivity"
+        <activity android:name=".ui.activity.FormularioMotoClubeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

@@ -10,7 +10,7 @@ import com.orgs.nitro.R
 import com.orgs.nitro.dao.MotoClubesDao
 import com.orgs.nitro.model.MotoCLubes
 
-class FormularioProdutoActivity: AppCompatActivity(R.layout.formulario_produto_activity) {
+class FormularioMotoClubeActivity: AppCompatActivity(R.layout.formulario_motoclube_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
